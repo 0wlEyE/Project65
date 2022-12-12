@@ -24,12 +24,17 @@ def calculate(): # <--------- คำนวนค่าที่ต้องแ�
     if equation != "":
         try:
             result = eval(equation)
+            equation = str(result)
         except:
             result = "Error"
             equation = ""
         label_result.config(text=result)
+def backspace(): # <----------- ลบตัวอักษรออก 1 ตัว
+    global equation
+    equation = equation[:-1]
+    label_result.config(text=equation)
 
-label_result = Label(root, width=25,height=2,text="",font=("arial",30))
+label_result = Label(root, width=25,height=2,text="",font=("arial",30),anchor="e")
 label_result.pack()
 # ^ ^ ^ ช่องแสดงตัวเลข
 
@@ -39,9 +44,9 @@ Button(root,text="C", width=5, height=1, font=("arial",30,"bold"), bd=1,fg="#fff
 #  ปุ่ม       ชื่อปุ่ม         ขนาดของปุ่ม       ฟอนต์                                          สี         ตำแหน่งของปุ่ม
 Button(root,text="(", width=5, height=1, font=("arial",30,"bold"), bd=1,fg="#fff",bg="#fe9037",command=lambda: show("(")).place(x=150,y=100)      # (
 Button(root,text=")", width=5, height=1, font=("arial",30,"bold"), bd=1,fg="#fff",bg="#fe9037",command=lambda: show(")")).place(x=290,y=100)     # )
-Button(root,text="xⁿ", width=5, height=1, font=("arial",30,"bold"), bd=1,fg="#fff",bg="#fe9037",command=lambda: show("**")).place(x=430,y=100)   # xⁿ
+Button(root,text="<-", width=5, height=1, font=("arial",30,"bold"), bd=1,fg="#fff",bg="#3697f5",command=lambda: backspace()).place(x=430,y=100)   # <--
 
-Button(root,text="√", width=5, height=1, font=("arial",30,"bold"), bd=1,fg="#fff",bg="#fe9037",command=lambda: show("**0.5")).place(x=10,y=200)   # √
+Button(root,text="xⁿ", width=5, height=1, font=("arial",30,"bold"), bd=1,fg="#fff",bg="#fe9037",command=lambda: show("**")).place(x=10,y=200)   # xⁿ
 Button(root,text="//", width=5, height=1, font=("arial",30,"bold"), bd=1,fg="#fff",bg="#fe9037",command=lambda: show("//")).place(x=150,y=200)   # //
 Button(root,text="%", width=5, height=1, font=("arial",30,"bold"), bd=1,fg="#fff",bg="#fe9037",command=lambda: show("%")).place(x=290,y=200)     # %
 Button(root,text="÷", width=5, height=1, font=("arial",30,"bold"), bd=1,fg="#fff",bg="#fe9037",command=lambda: show("/")).place(x=430,y=200)     # ÷

@@ -31,7 +31,10 @@ def calculate(): # <--------- คำนวนค่าที่ต้องแ�
         label_result.config(text=result)
 def backspace(): # <----------- ลบตัวอักษรออก 1 ตัว
     global equation
-    equation = equation[:-1]
+    if equation[-2:] == "**":
+        equation = equation[:-2]
+    else:
+        equation = equation[:-1]
     label_result.config(text=equation)
 
 label_result = Label(root, width=25,height=2,text="",font=("arial",30),anchor="e")
@@ -73,6 +76,3 @@ Button(root,text="=", width=5, height=1, font=("arial",30,"bold"), bd=1,fg="#fff
 
 
 root.mainloop()
-
-#ปู่ม 0 อยู่ที่ x=10,y=500  width=11, height=1
-#ปุ่ม = อยู่ที่ x=430,y=500 width=5, height=3
